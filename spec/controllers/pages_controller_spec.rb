@@ -1,12 +1,19 @@
 require 'spec_helper'
 
 describe PagesController do
+  render_views
 
   describe "GET 'home'" do
     it "returns http success" do
       get 'home'
       response.should be_success
     end
+    
+    it "should have the right title" do
+      get 'home'
+      response.should have_selectro("title", 
+                        :content => "Ruby on Rails Turtorial Sample App | Home")
+    end                 
   end
 
   describe "GET 'contact'" do
@@ -14,6 +21,24 @@ describe PagesController do
       get 'contact'
       response.should be_success
     end
+    
+    it "should have the right title" do
+      get 'contact'
+      response.should have_selectro("title", 
+                        :content => "Ruby on Rails Turtorial Sample App | Contact")
+    end
   end
-
+  
+  describe "GET 'about'" do
+    it "returns http success" do
+      get 'about'
+      response.should be_success
+    end
+    
+    it "should have the right title" do
+      get 'about'
+      response.should have_selectro("title", 
+                        :content => "Ruby on Rails Turtorial Sample App | About")
+    end
+  end
 end
